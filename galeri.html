@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galeri Labuan Cermin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #1e5799, #2989d8, #207cca, #7db9e8);
+            padding: 15px 0;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .navbar-nav .nav-link.active {
+            color: #ffffff !important;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .featured-photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .featured-photo img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .featured-photo .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="paket_wisata.html">Paket Wisata</a></li>
+            <li class="nav-item"><a class="nav-link" href="pemesanan_paket.html">Pemesanan</a></li>
+            <li class="nav-item"><a class="nav-link active" href="galeri.html">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> Profil
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" id="loginBtn">Login</a></li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-5">
+        <h1 class="text-center mb-4">Galeri Labuan Cermin</h1>
+        
+        <div class="row mb-5">
+            <div class="col-md-8 offset-md-2">
+                <p class="lead text-center">
+                    Selamat datang di Galeri Labuan Cermin, tempat di mana keindahan alam yang menakjubkan terpampang nyata. 
+                    Nikmati pemandangan danau dua rasa yang unik, air jernih yang memukau, dan keajaiban alam yang tak terlupakan.
+                </p>
+            </div>
+        </div>
+
+        <div class="featured-photo mb-5">
+            <img src="img/welcome.jpg" alt="Foto of the Month">
+            <div class="overlay">
+                <h3>Foto of the Month</h3>
+                <p>Welcome To Labuan Cermin</p>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/2.jpeg" alt="Foto Labuan Cermin 1">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/3.jpeg" alt="Foto Labuan Cermin 2">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/4.jpg" alt="Foto Labuan Cermin 3">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/5.jpg" alt="Foto Labuan Cermin 4">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/6.jpg" alt="Foto Labuan Cermin 5">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/7.jpg" alt="Foto Labuan Cermin 6">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/9.jpg" alt="Foto Labuan Cermin 7">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/buaya.jpeg" alt="Foto Labuan Cermin 8">
+                </div>
+            </div>
+            <div class="col">
+                <div class="gallery-item">
+                    <img src="img/turr.jpg" alt="Foto Labuan Cermin 9">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Tentang Labuan Cermin</h5>
+                    <p>Labuan Cermin adalah danau air tawar yang unik di Kalimantan Timur, Indonesia. Terkenal dengan air jernih yang memantulkan langit seperti cermin.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Kontak Kami</h5>
+                    <p>Email: info@labuancermin.com<br>
+                    Telepon: +62 123 4567 890</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

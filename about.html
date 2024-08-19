@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Labuan Cermin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #1e5799, #2989d8, #207cca, #7db9e8);
+            padding: 15px 0;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .hero {
+        background-image: url('img/labuan-cermin-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero-overlay h1, .hero-overlay p {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero-overlay h1 {
+            color: #ffffff;
+            animation: fadeIn 1s ease-out;
+        }
+        .hero-overlay p {
+            color: #e0e0e0;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #2989d8;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .team-member {
+            transition: all 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        .team-member-img-wrapper {
+            position: relative;
+            padding-top: 100%; /* Rasio aspek 1:1 */
+            overflow: hidden;
+        }
+
+        .team-member-img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan gambar menutupi area tanpa distorsi */
+        }
+
+        .team-member {
+            height: 100%; /* Membuat kartu memiliki tinggi yang sama */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-member .card-body {
+            flex-grow: 1; /* Memastikan body kartu mengisi ruang yang tersisa */
+        }
+        .timeline {
+            position: relative;
+            padding: 0;
+            list-style: none;
+        }
+        .timeline:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            margin-left: -1.5px;
+            background-color: #e9ecef;
+        }
+        .timeline > li {
+            position: relative;
+            margin-bottom: 50px;
+            min-height: 50px;
+        }
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+        .timeline > li:after {
+            clear: both;
+        }
+        .timeline > li .timeline-panel {
+            float: left;
+            position: relative;
+            width: 46%;
+            padding: 20px;
+            border: 1px solid #d4d4d4;
+            border-radius: 8px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        }
+        .timeline > li .timeline-panel:before {
+            position: absolute;
+            top: 26px;
+            right: -15px;
+            display: inline-block;
+            border-top: 15px solid transparent;
+            border-left: 15px solid #ccc;
+            border-right: 0 solid #ccc;
+            border-bottom: 15px solid transparent;
+            content: " ";
+        }
+        .timeline > li .timeline-panel:after {
+            position: absolute;
+            top: 27px;
+            right: -14px;
+            display: inline-block;
+            border-top: 14px solid transparent;
+            border-left: 14px solid #fff;
+            border-right: 0 solid #fff;
+            border-bottom: 14px solid transparent;
+            content: " ";
+        }
+        .timeline > li .timeline-image {
+            z-index: 100;
+            position: absolute;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin-left: -40px;
+            border: 7px solid #e9ecef;
+            border-radius: 100%;
+            text-align: center;
+            color: #fff;
+            background-color: #2989d8;
+        }
+        .timeline > li .timeline-image h4 {
+            font-size: 10px;
+            margin-top: 12px;
+            line-height: 14px;
+        }
+        .timeline > li.timeline-inverted > .timeline-panel {
+            float: right;
+        }
+        .timeline > li.timeline-inverted > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+        .timeline > li.timeline-inverted > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
+        .navbar-nav .nav-link.active {
+        color: #ffffff !important;
+        font-weight: bold;
+        text-decoration: underline;
+        }
+        footer {
+            background: linear-gradient(to right, #1e5799, #2989d8);
+            color: white;
+        }
+        .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="hero">
+        <div class="hero-overlay">
+            <h1 class="display-4 fw-bold">Tentang Kami</h1>
+            <p class="lead">Mengenal Lebih Dekat Dengan Tim Labuan Cermin</p>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100 justify-content-between">
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="paket_wisata.html">Paket Wisata</a></li>
+                <li class="nav-item"><a class="nav-link" href="pemesanan_paket.html">Pemesanan</a></li>
+                <li class="nav-item"><a class="nav-link" href="galeri.html">Galeri</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> Profil
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#" id="loginBtn">Login</a></li>
+                    <li><a class="dropdown-item" href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+                </ul>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <section class="mb-5">
+            <h2 class="text-center section-title">Visi & Misi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Visi</h3>
+                    <p>Menjadi destinasi ekowisata terkemuka di Indonesia yang mengedepankan keindahan alam, pelestarian lingkungan, dan kesejahteraan masyarakat lokal.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Melestarikan keindahan alam Labuan Cermin untuk generasi mendatang</li>
+                        <li>Memberikan pengalaman wisata yang unik dan berkesan bagi pengunjung</li>
+                        <li>Memberdayakan masyarakat lokal melalui pengembangan ekowisata</li>
+                        <li>Mengedukasi pengunjung tentang pentingnya menjaga kelestarian lingkungan</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- section tim -->
+        <section class="mb-5">
+            <h2 class="text-center section-title">Tim Kami</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card team-member">
+                        <div class="team-member-img-wrapper">
+                            <img src="../img/me.jpg" class="card-img-top" alt="Team Member 1">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Rafi Abdurrohim</h5>
+                            <p class="card-text">Founder & CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card team-member">
+                        <div class="team-member-img-wrapper">
+                            <img src="../img/kuboo.png" class="card-img-top" alt="Team Member 2">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Nagisa Kubo</h5>
+                            <p class="card-text">Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card team-member">
+                        <div class="team-member-img-wrapper">
+                            <img src="../img/loki.jpg" class="card-img-top" alt="Team Member 3">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Loki Odinson</h5>
+                            <p class="card-text">God Of Stories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- timeline -->
+        <section>
+            <h2 class="text-center section-title">Sejarah Kami</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-image">
+                        <h4>2015</h4>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Awal Mula</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Labuan Cermin mulai dikenal sebagai destinasi wisata lokal yang menarik</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>2018</h4>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Pengembangan</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Infrastruktur mulai dibangun untuk mendukung kunjungan wisatawan</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-image">
+                        <h4>2020</h4>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Tantangan Pandemi</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Fokus pada pengembangan protokol kesehatan dan wisata virtual</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>2024</h4>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Saat Ini</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Menjadi salah satu destinasi ekowisata terbaik di Indonesia</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!-- akhir timeline -->
+
+    <!-- Footer  -->
+    <footer class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Tentang Labuan Cermin</h5>
+            <p>Danau Labuan Cermin adalah wisata air alami yang menakjubkan di Desa Labuan Kelambu, Kecamatan Biduk-biduk, Kabupaten Berau, Kalimantan Timur.</p>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Kontak Kami</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-geo-alt-fill me-2"></i>Desa Labuan Kelambu, Kecamatan Biduk-biduk, Kabupaten Berau, Kalimantan Timur</li>
+              <li><i class="bi bi-telephone-fill me-2"></i>+628 3895 838063</li>
+              <li><i class="bi bi-envelope-fill me-2"></i>rafiabdurrohim@gmail.com</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Ikuti Kami</h5>
+            <div class="social-icons">
+              <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4 bg-light">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2024 Rafi Abdurrohim. Hak Cipta Dilindungi.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><a href="#" class="text-light">Kebijakan Privasi</a></li>
+              <li class="list-inline-item"><a href="#" class="text-light">Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- script login -->
+    <script>
+   
+
+      function updateLoginStatus() {
+        if (isLoggedIn) {
+          loginBtn.style.display = 'none';
+          logoutBtn.style.display = 'block';
+        } else {
+          loginBtn.style.display = 'block';
+          logoutBtn.style.display = 'none';
+        }
+      }
+
+      
+
+      logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (isLoggedIn) {
+          fetch('logout.php')
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                isLoggedIn = false;
+                alert('Anda telah berhasil logout.');
+                updateLoginStatus();
+              }
+            });
+        } else {
+          alert('Anda belum login.');
+        }
+      });
+
+      updateLoginStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Paket Wisata - Labuan Cermin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e5799, #7db9e8);
+            min-height: 100vh;
+        }
+        .navbar {
+            background: linear-gradient(to right, #1e5799, #2989d8, #207cca, #7db9e8);
+            padding: 15px 0;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .navbar-nav .nav-link.active {
+            color: #ffffff !important;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .btn-pesanan {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-pesanan:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .pesanan-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-check-input:checked {
+            background-color: #1e5799;
+            border-color: #1e5799;
+        }
+        .btn-primary {
+            background-color: #1e5799;
+            border-color: #1e5799;
+        }
+        .btn-primary:hover {
+            background-color: #2989d8;
+            border-color: #2989d8;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100 justify-content-between">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="paket_wisata.html">Paket Wisata</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="# ">Pemesanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">Galleri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> Profil
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#" id="loginBtn">Login</a></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container p-4">
+                    <h2 class="text-center mb-4">Form Pemesanan Paket Wisata</h2>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Pemesan</label>
+                            <input type="text" class="form-control" id="nama" name="nama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paket_wisata" class="form-label">Pilih Paket Wisata</label>
+                            <select class="form-select" id="paket_wisata" name="paket_wisata" required onchange="updateHarga(); updateKomponen();">
+                                <option value="">Pilih paket wisata</option>
+                                <option value="1" data-harga="500000" data-komponen="perahu,makan_siang">Paket Perahu - Rp 500.000</option>
+                                <option value="2" data-harga="750000" data-komponen="snorkeling,perahu,makan_siang">Paket Snorkeling - Rp 750.000</option>
+                                <option value="3" data-harga="1000000" data-komponen="perahu,snorkeling,penginapan,makan_siang">Paket Keluarga - Rp 1.000.000</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah Peserta</label>
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required onchange="hitungTotal()">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="durasi" class="form-label">Durasi (hari)</label>
+                            <input type="number" class="form-control" id="durasi" name="durasi" min="1" required onchange="hitungTotal()">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Komponen Paket</label>
+                            <div class="form-check">
+                                <input class="form-check-input komponen-checkbox" type="checkbox" id="penginapan" name="komponen[]" value="penginapan" data-harga="1000000">
+                                <label class="form-check-label" for="penginapan">Penginapan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input komponen-checkbox" type="checkbox" id="wisata_perahu" name="komponen[]" value="wisata_perahu" data-harga="800000">
+                                <label class="form-check-label" for="wisata_perahu">Wisata Perahu</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input komponen-checkbox" type="checkbox" id="paket_snorkling" name="komponen[]" value="paket_snorkling" data-harga="900000">
+                                <label class="form-check-label" for="paket_snorkling">Paket Snorkling</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="total_bayar" class="form-label">Total Bayar</label>
+                            <input type="text" class="form-control" id="total_bayar" name="total_bayar" readonly>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-primary" onclick="reviewPesanan()">Review Pesanan</button>
+                            <button type="button" class="btn btn-success" onclick="submitForm()">Simpan</button>
+                            <button type="button" class="btn btn-danger" onclick="resetForm()">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pesanan-container">
+                    <h3 class="text-center mb-3">Masuk untuk Melihat Pesanan</h3>
+                    <p class="text-center mb-4">Silakan masuk untuk melihat dan mengelola pesanan Anda</p>
+                    <a href="#" class="btn btn-pesanan btn-lg" id="loginBtnPesanan">
+                        <i class="bi bi-box-arrow-in-right"></i> Masuk
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Review Pesanan -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Review Pesanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="reviewModalBody">
+                    <!-- Konten review akan diisi melalui JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Konfirmasi Pesanan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateHarga() {
+            const paketWisata = document.getElementById('paket_wisata');
+            const harga = paketWisata.options[paketWisata.selectedIndex].getAttribute('data-harga');
+            hitungTotal();
+        }
+
+        function updateKomponen() {
+            const paketWisata = document.getElementById('paket_wisata');
+            const komponenString = paketWisata.options[paketWisata.selectedIndex].getAttribute('data-komponen');
+            const komponenArray = komponenString ? komponenString.split(',') : [];
+
+            document.querySelectorAll('.komponen-checkbox').forEach(checkbox => {
+                checkbox.checked = komponenArray.includes(checkbox.value);
+            });
+            
+            hitungTotal();
+        }
+
+        function hitungTotal() {
+            const paketWisata = document.getElementById('paket_wisata');
+            const harga = parseFloat(paketWisata.options[paketWisata.selectedIndex].getAttribute('data-harga'));
+            const jumlah = parseInt(document.getElementById('jumlah').value) || 0;
+            const durasi = parseInt(document.getElementById('durasi').value) || 0;
+            
+            let total = harga * jumlah * durasi;
+
+            document.querySelectorAll('.komponen-checkbox:checked').forEach(checkbox => {
+                const komponenHarga = parseFloat(checkbox.getAttribute('data-harga')) || 0;
+                total += komponenHarga * jumlah * (checkbox.id === 'penginapan' ? durasi : 1);
+            });
+
+            document.getElementById('total_bayar').value = total.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
+        }
+
+        function reviewPesanan() {
+            const nama = document.getElementById('nama').value;
+            const paketWisata = document.getElementById('paket_wisata');
+            const paketNama = paketWisata.options[paketWisata.selectedIndex].text;
+            const jumlah = document.getElementById('jumlah').value;
+            const durasi = document.getElementById('durasi').value;
+            const totalBayar = document.getElementById('total_bayar').value;
+
+            let reviewContent = `
+                <p><strong>Nama Pemesan:</strong> ${nama}</p>
+                <p><strong>Paket Wisata:</strong> ${paketNama}</p>
+                <p><strong>Jumlah Peserta:</strong> ${jumlah}</p>
+                <p><strong>Durasi:</strong> ${durasi} hari</p>
+                <p><strong>Total Bayar:</strong> ${totalBayar}</p>
+            `;
+
+            document.querySelectorAll('.komponen-checkbox:checked').forEach(checkbox => {
+                reviewContent += `<p><strong>${checkbox.nextElementSibling.textContent}:</strong> Dipilih</p>`;
+            });
+
+            document.getElementById('reviewModalBody').innerHTML = reviewContent;
+
+            const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            reviewModal.show();
+        }
+
+        function submitForm() {
+            alert('Pesanan berhasil disimpan!');
+            resetForm();
+        }
+
+        function resetForm() {
+            document.getElementById('bookingForm').reset();
+            document.getElementById('total_bayar').value = '';
+        }
+
+        window.onload = function() {
+            updateKomponen();
+            hitungTotal();
+        };
+
+        document.getElementById('paket_wisata').addEventListener('change', function() {
+            updateKomponen();
+            hitungTotal();
+        });
+
+        document.getElementById('loginBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Fitur login belum tersedia dalam versi statis ini.');
+        });
+
+        document.getElementById('loginBtnPesanan').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Fitur login belum tersedia dalam versi statis ini.');
+        });
+    </script>
+</body>
+</html>

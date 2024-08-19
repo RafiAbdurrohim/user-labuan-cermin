@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Labuan Cermin - Wisata Alam Menakjubkan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+      .navbar {
+        background: linear-gradient(to right, #1e5799, #2989d8, #207cca, #7db9e8);
+        padding: 15px 0;
+      }
+      .navbar-nav .nav-link {
+        color: white !important;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .navbar-nav .nav-link.active {
+        color: #ffffff !important;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .navbar-nav .nav-link:hover {
+        transform: translateY(-3px);
+        text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+      .navbar .btn-outline-light {
+      border-color: rgba(255,255,255,0.5);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .btn-outline-light:hover {
+      background-color: white;
+      color: #1e5799;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+      .features .card, .testimonials .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+      }
+      .features .card:hover, .testimonials .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      .features .bi {
+        transition: transform 0.3s ease-in-out;
+      }
+      .features .card:hover .bi {
+        transform: scale(1.1);
+      }
+      .banner-container {
+        position: relative;
+      }
+      .card {
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        cursor: pointer;
+      }
+      .nama{
+        color:whitesmoke;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      }
+      .btn-outline-success {
+        color: #1e5799;
+        border-color: #1e5799;
+      }
+      .btn-outline-success:hover {
+        background-color: #1e5799;
+        border-color: #1e5799;
+      }
+      footer {
+        background: linear-gradient(to right, #1e5799, #2989d8);
+        color: white;
+      }
+      .social-icons a {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        transition: all 0.3s ease;
+      }
+      .social-icons a:hover {
+        transform: translateY(-5px);
+      }
+      .cta {
+        background-size: cover;
+        background-position: center;
+      }
+      .cta h2, .cta p {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      }
+      .cta .btn-light:hover {
+        background-color: #f8f9fa;
+        color: #1e5799;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      }
+      /* Modal styles */
+      .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-header {
+        background: linear-gradient(to right, #1e5799, #2989d8);
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom: none;
+      }
+
+      .modal-title {
+        font-weight: bold;
+      }
+
+      .modal-body {
+        padding: 30px;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .form-control {
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+        padding: 10px 15px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+
+      .form-control:focus {
+        border-color: #2989d8;
+        box-shadow: 0 0 0 0.2rem rgba(41, 137, 216, 0.25);
+      }
+
+      .btn-primary {
+        background: linear-gradient(to right, #1e5799, #2989d8);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(41, 137, 216, 0.3);
+      }
+
+      .modal-footer {
+        border-top: none;
+      }
+
+      /* Close button */
+      .btn-close {
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      .btn-close:hover {
+        opacity: 1;
+      }
+
+      /* Animation for modal */
+      .modal.fade .modal-dialog {
+        transition: transform 0.3s ease-out;
+        transform: scale(0.9);
+      }
+
+      .modal.show .modal-dialog {
+        transform: scale(1);
+      }
+      .map-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(41, 137, 216, 0.1);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .map-container::after {
+        content: 'Labuan Cermin';
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .map-container .ratio {
+        transition: transform 0.3s ease;
+      }
+
+      .map-container:hover .ratio {
+        transform: scale(1.02);
+      }
+    
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="banner-container">
+        <img src="img/baner.png" alt="Labuan Cermin" class="img-fluid">
+      </div>
+    </header>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav w-100 justify-content-between align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="paket_wisata.html">Paket Wisata</a></li>
+        <li class="nav-item"><a class="nav-link" href="pemesanan_paket.html">Pemesanan</a></li>
+        <li class="nav-item"><a class="nav-link" href="galeri.html">Galleri</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
+        <!-- <li class="nav-item">
+          <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#bukuTamuModal">
+            Isi Buku Tamu
+          </button>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> Profil
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#" id="loginBtn">Login</a></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- content utama -->
+  <main class="container my-5">
+  <section>
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="text-center mb-4">Paket Wisata</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 position-relative">
+              <div class="position-absolute top-0 start-0 bg-danger text-white py-1 px-2 rounded-end" style="z-index: 1;">
+                DISKON 40%
+              </div>
+              <img src="img/6.jpg" class="card-img-top" alt="Paket Wisata 1">
+              <div class="card-body">
+                <h5 class="card-title">Paket Wisata Dasar</h5>
+                <p class="card-text">
+                  <span class="text-muted text-decoration-line-through">Rp 1.000.000</span>
+                  <strong class="ms-2 text-danger">Rp 600.000</strong>
+                </p>
+                <p>Nikmati keindahan Labuan Cermin dengan paket dasar kami...</p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paketModal1">
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 position-relative">
+              <div class="position-absolute top-0 start-0 bg-danger text-white py-1 px-2 rounded-end" style="z-index: 1;">
+                DISKON 40%
+              </div>
+              <img src="img/8.jpg" class="card-img-top" alt="Paket Wisata 2">
+              <div class="card-body">
+                <h5 class="card-title">Paket Wisata Premium</h5>
+                <p class="card-text">
+                  <span class="text-muted text-decoration-line-through">Rp 1.500.000</span>
+                  <strong class="ms-2 text-danger">Rp 900.000</strong>
+                </p>
+                <p>Pengalaman lengkap menjelajahi keindahan Labuan Cermin...</p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paketModal2">
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar atau konten tambahan bisa ditambahkan di sini -->
+      <div class="col-md-4">
+        <form class="d-flex pb-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Cari" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Cari</button>
+        </form>
+        <div class="ratio ratio-16x9 mb-3">
+          <iframe src="https://www.youtube.com/embed/4IfYHkN0oz4" title="YouTube video" allowfullscreen></iframe>
+        </div>
+        <h4 class="text-center">Pesona Indahnya Labuan Cermin</h4>
+      </div>
+    </div>
+    
+    <!-- Modal untuk Paket Wisata 1 -->
+    <div class="modal fade" id="paketModal1" tabindex="-1" aria-labelledby="paketModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paketModalLabel1">Paket Wisata Dasar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img src="img/6.jpg" class="card-img-top" alt="Paket Wisata Dasar">
+            <p><strong>Harga:</strong> Rp 600.000</p>
+            <p><strong>Deskripsi:</strong> Nikmati keindahan Labuan Cermin dengan paket dasar kami yang mencakup perjalanan seru selama satu hari penuh.</p>
+            <p><strong>Komponen:</strong> Transportasi, makan siang, pemandu wisata, perlengkapan snorkeling</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <a href="pemesanan_paket.html" class="btn btn-primary">Pesan Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal untuk Paket Wisata 2 -->
+    <div class="modal fade" id="paketModal2" tabindex="-1" aria-labelledby="paketModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paketModalLabel2">Paket Wisata Premium</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img src="img/8.jpg" class="card-img-top" alt="Paket Wisata Premium">
+            <p><strong>Harga:</strong> Rp 900.000</p>
+            <p><strong>Deskripsi:</strong> Pengalaman lengkap menjelajahi keindahan Labuan Cermin dengan fasilitas premium dan durasi lebih lama.</p>
+            <p><strong>Komponen:</strong> Transportasi VIP, makan siang dan makan malam, pemandu wisata profesional, perlengkapan snorkeling premium, tur mangrove</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <a href="pemesanan_paket.html" class="btn btn-primary">Pesan Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    </div>
+  </section>
+</main>
+<!-- akhir content utama -->
+
+<section class="cta py-5" style="background: linear-gradient(to right, #1e5799, #2989d8);">
+  <div class="container text-center">
+    <h2 class="text-white mb-4">Bagikan Pengalaman Anda di Labuan Cermin!</h2>
+    <p class="text-white mb-4">Ceritakan momen tak terlupakan dan berikan inspirasi untuk pengunjung lainnya</p>
+    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#bukuTamuModal">
+      Tulis Cerita Anda
+    </button>
+  </div>
+</section>
+
+<!-- Fitur Unggulan -->
+<section class="features py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Fitur Unggulan Labuan Cermin</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-water display-4 text-primary mb-3"></i>
+            <h3 class="card-title">Air Jernih Bak Cermin</h3>
+            <p class="card-text">Nikmati keindahan air yang begitu jernih, memantulkan langit bagai cermin raksasa.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-tree display-4 text-primary mb-3"></i>
+            <h3 class="card-title">Hutan Mangrove</h3>
+            <p class="card-text">Jelajahi ekosistem unik hutan mangrove yang mengelilingi danau.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-camera display-4 text-primary mb-3"></i>
+            <h3 class="card-title">Spot Foto Menakjubkan</h3>
+            <p class="card-text">Abadikan momen indah Anda di berbagai spot foto yang memukau.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimoni Pengunjung -->
+      <!-- Testimoni Pengunjung -->
+<section class="testimonials py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Apa Kata Mereka?</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <p class="card-text">Keren banget Cui</p>
+              <footer class="blockquote-footer mt-2 nama">Shiro Neko</footer>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <p class="card-text">Kapan Kapan ikutan</p>
+              <footer class="blockquote-footer mt-2 nama">Kuro Neko</footer>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <p class="card-text">Kelass banget Brokk</p>
+              <footer class="blockquote-footer mt-2 nama">Hasani juan</footer>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- akhir fitur -->
+
+  <!-- call action -->
+  <section class="cta py-5" style="background: linear-gradient(to right, #1e5799, #2989d8);">
+    <div class="container text-center">
+      <h2 class="text-white mb-4">Siap untuk Petualangan Tak Terlupakan?</h2>
+      <p class="text-white mb-4">Booking paket wisata Anda sekarang dan nikmati pengalaman luar biasa di Labuan Cermin!</p>
+      <a href="pemesanan_paket.php" class="btn btn-light btn-lg">Pesan Sekarang</a>
+    </div>
+  </section>
+  <!-- akhir action -->
+
+  
+
+
+<!-- Modal Buku Tamu -->
+<div class="modal fade" id="bukuTamuModal" tabindex="-1" aria-labelledby="bukuTamuModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bukuTamuModalLabel">Buku Tamu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bukuTamuForm">
+          <div class="mb-3">
+            <label for="nama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="nama" name="nama" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="pesan" class="form-label">Pesan</label>
+            <textarea class="form-control" id="pesan" name="pesan" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- maps -->
+    <section class="map py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Lokasi Kami</h2>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="map-container">
+            <div class="ratio ratio-16x9">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.865477318766!2d118.6839439!3d1.2522193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32734cb76f07da33%3A0x5e898623450bccae!2sLabuan%20Cermin!5e0!3m2!1sid!2sid!4v1722214753252!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="https://maps.app.goo.gl/kpDA4uBLpFzZRAvd7" class="btn btn-primary" target="_blank">Buka di Google Maps</a>
+            <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Labuan Cermin, Biduk-Biduk, Berau Regency, East Kalimantan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+     <!-- akhir maps -->
+
+
+    <!-- footer -->
+    <footer class="py-5">
+      <div class="container">                               
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Tentang Labuan Cermin</h5>
+            <p>Danau Labuan Cermin adalah wisata air alami yang menakjubkan di Desa Labuan Kelambu, Kecamatan Biduk-biduk, Kabupaten Berau, Kalimantan Timur.</p>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Kontak Kami</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-geo-alt-fill me-2"></i>Desa Labuan Kelambu, Kecamatan Biduk-biduk, Kabupaten Berau, Kalimantan Timur</li>
+              <li><i class="bi bi-telephone-fill me-2"></i>+628 3895 838063</li>
+              <li><i class="bi bi-envelope-fill me-2"></i>rafiabdurrohim@gmail.com</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Ikuti Kami</h5>
+            <div class="social-icons">
+              <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-light"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4 bg-light">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2024 Rafi Abdurrohim. Hak Cipta Dilindungi.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><a href="#" class="text-light">Kebijakan Privasi</a></li>
+              <li class="list-inline-item"><a href="#" class="text-light">Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- akhir footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+document.getElementById('bukuTamuForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Ambil data dari form
+  var formData = new FormData(this);
+
+  // Kirim data ke server menggunakan fetch API
+  fetch('submit_buku_tamu.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success) {
+      alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
+      $('#bukuTamuModal').modal('hide');
+      this.reset();
+    } else {
+      alert('Maaf, terjadi kesalahan: ' + (data.error || 'Silakan coba lagi.'));
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Terjadi kesalahan jaringan. Silakan coba lagi nanti.');
+  });
+});
+</script>
+    <!-- script login -->
+    <script>
+  
+
+  logoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (isLoggedIn) {
+      fetch('logout.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            isLoggedIn = false;
+            alert('Anda telah berhasil logout.');
+            updateLoginStatus();
+          }
+        });
+    } else {
+      alert('Anda belum login.');
+    }
+  });
+
+  updateLoginStatus();
+
+</script>
+</body>
+</html>
